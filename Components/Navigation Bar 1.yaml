@@ -1,0 +1,157 @@
+ComponentDefinitions:
+  CustomSideBar:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      Color:
+        PropertyKind: Input
+        DisplayName: Color
+        Description: A custom property
+        DataType: Color
+        Default: =Color.White
+      ConnectedUser:
+        PropertyKind: Input
+        DisplayName: ConnectedUser
+        Description: A custom property
+        DataType: Text
+        Default: ="Emmanuel"
+      CurrentIndicatorColor:
+        PropertyKind: Input
+        DisplayName: CurrentIndicator Color
+        Description: A custom property
+        DataType: Color
+        Default: =RGBA(0, 0, 0, 1)
+      Default:
+        PropertyKind: Input
+        DisplayName: Default
+        Description: A custom property
+        DataType: Text
+        Default: ="Home"
+      HoverFill:
+        PropertyKind: Input
+        DisplayName: HoverFill
+        Description: A custom property
+        DataType: Color
+        Default: =RGBA(0, 0, 0, 1)
+      Items:
+        PropertyKind: Input
+        DisplayName: Items
+        Description: A custom property
+        DataType: Table
+        Default: |-
+          =Table(
+              {Value: "Home", Icon: Icon.Home, Screen: App.ActiveScreen},
+              {Value: "Add ", Icon: Icon.AddLibrary, Screen: App.ActiveScreen},
+              {Value: "Existing", Icon: Icon.DetailList, Screen: App.ActiveScreen},
+              {Value: "Settings", Icon: Icon.Settings, Screen: App.ActiveScreen}
+           )
+      SelectedFill:
+        PropertyKind: Input
+        DisplayName: SelectedFill
+        Description: A custom property
+        DataType: Color
+        Default: =RGBA(0, 0, 0, 1)
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      Height: =75
+      Width: =App.Width
+    Children:
+      - HeaderContainer1_1:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =75
+            LayoutDirection: =LayoutDirection.Horizontal
+            PaddingLeft: =100
+            RadiusBottomLeft: =8
+            RadiusBottomRight: =8
+            RadiusTopLeft: =8
+            RadiusTopRight: =8
+            Width: =Parent.Width-Self.X-20
+          Children:
+            - Gallery2:
+                Control: Gallery@2.15.0
+                Variant: BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0
+                Properties:
+                  AlignInContainer: =AlignInContainer.Start
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  FillPortions: =3
+                  Height: =75
+                  Items: =CustomSideBar.Items
+                  OnSelect: =Navigate(ThisItem.Screen)
+                  TemplateSize: =100
+                  Transition: =Transition.Pop
+                  Width: =700
+                  X: =54
+                  Y: =1
+                Children:
+                  - Rectangle4:
+                      Control: Rectangle@2.3.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(15, 84, 140, 1)
+                        Height: =3
+                        OnSelect: =Select(Parent)
+                        Visible: |
+                          =ThisItem.Screen=App.ActiveScreen
+                        Width: =90
+                        X: =10
+                        Y: =49
+                  - Label1:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(15, 84, 140, 1)
+                        Font: =Font.'Lato Hairline'
+                        FontWeight: =FontWeight.Bold
+                        Height: =23
+                        OnSelect: =Navigate(ThisItem.Screen,ScreenTransition.CoverRight)
+                        PaddingBottom: =10
+                        Size: =12
+                        Text: =ThisItem.Value
+                        Width: =90
+                        X: =10
+                        Y: =17
+            - Container4:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  DropShadow: =DropShadow.None
+                  Height: =75
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =10
+                  LayoutJustifyContent: =LayoutJustifyContent.End
+                  LayoutMinHeight: =75
+                  PaddingRight: =20
+                Children:
+                  - TextCanvas5:
+                      Control: Text@0.0.51
+                      Properties:
+                        Align: ='TextCanvas.Align'.End
+                        FontColor: =RGBA(0,67,123,1)
+                        Height: =27
+                        Size: =13
+                        Text: =CustomSideBar.ConnectedUser
+                        VerticalAlign: =VerticalAlign.Middle
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =316
+                        X: =987
+                        Y: =20
+                  - Image2:
+                      Control: Image@2.2.3
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Height: =32
+                        Image: =User().Image
+                        RadiusBottomLeft: =25
+                        RadiusBottomRight: =25
+                        RadiusTopLeft: =25
+                        RadiusTopRight: =25
+                        Width: =26
+                        X: =327
+                        Y: =20
